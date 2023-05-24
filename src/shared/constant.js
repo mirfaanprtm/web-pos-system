@@ -1,0 +1,8 @@
+export const LOGIN_ACTION_TYPE = {
+    LOGIN: 'USER_LOGIN',
+    LOGOUT: 'USER_LOGOUT'
+}
+
+export const HOME_ACTION_TYPE = {
+    HOME_HEADER: 'HOME_HEADER'
+}
