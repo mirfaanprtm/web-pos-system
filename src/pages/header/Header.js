@@ -1,4 +1,4 @@
-import {Container, Image, Navbar, NavDropdown} from "react-bootstrap";
+import {Container, Navbar, NavDropdown} from "react-bootstrap";
 import logo from "../../assets/logo/logo.json"
 import profile from "../../assets/profile/profile.json"
 import Lottie from "lottie-react";
