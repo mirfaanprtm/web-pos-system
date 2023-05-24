@@ -3,8 +3,7 @@ import LoginView from "../features/login/LoginView";
 import './AppNavigation.css';
 import {userLogout} from "../features/login/state/AuthenticationAction";
 import {connect} from "react-redux";
-import Penjualan from "../pages/penjualan";
-import Header from "../pages/penjualan/Header";
+import Menu from "../pages/menu";
 
 class AppNavigation extends Component {
     constructor(props) {
@@ -26,7 +25,7 @@ class AppNavigation extends Component {
                 {
                     this.props.authentication.isAuthenticated ?
                     <div>
-                        {this.state.currentPage === 0 && <Header/>}
+                        {this.state.currentPage === 0 && <Menu/>}
                 </div> : <LoginView/>
                 }
             </>
