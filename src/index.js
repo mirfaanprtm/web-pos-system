@@ -8,7 +8,6 @@ import { setupStore } from './store';
 import { register } from './deps';
 import AuthenticationService from "./services/AuthenticationService"
 import { Provider } from 'react-redux';
-import Penjualan from './pages/penjualan';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const store = setupStore();
@@ -18,9 +17,8 @@ const store = setupStore();
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-    <App />
+        <App />
     </Provider>
-   
   </React.StrictMode>
 );
 

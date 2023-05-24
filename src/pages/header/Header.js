@@ -27,7 +27,7 @@ const Header = () => {
                     </Navbar.Brand>
                     <Navbar.Collapse id="navbar-profile" className="justify-content-end">
                         <Lottie animationData={profile}
-                                loop={true}
+                                loop={false}
                                 style={styles.sizing}/>
                         <NavDropdown title="Profile" menuVariant={"dark"} style={styles.colour}>
                             <NavDropdown.Item href="#">Log out</NavDropdown.Item>

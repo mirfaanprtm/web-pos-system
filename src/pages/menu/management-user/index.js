@@ -1,8 +1,13 @@
 import ManUser from "./ManUser";
+import {Container} from "react-bootstrap";
 
 const ManagementUser = () => {
     return (
-        <ManUser />
+        <Container fluid>
+            <div>
+                <ManUser />
+            </div>
+        </Container>
     )
 }
 
