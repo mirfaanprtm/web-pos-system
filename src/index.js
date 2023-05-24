@@ -4,11 +4,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { setupStore } from './store';
+import { register } from './deps';
+import AuthenticationService from "./services/AuthenticationService"
+import { Provider } from 'react-redux';
+import Penjualan from './pages/penjualan';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const store = setupStore();
+(_ => {
+  register('AuthenticationService', AuthenticationService())
+})()
 root.render(
   <React.StrictMode>
+    <Provider store={store}>
     <App />
+    </Provider>
+   
   </React.StrictMode>
 );
 

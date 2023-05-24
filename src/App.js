@@ -1,10 +1,9 @@
 import './App.css';
-import Penjualan from "./pages/penjualan";
-
+import AppNavigation from './navigation/AppNavigation';
 function App() {
   return (
-    <div className="App">
-      <Penjualan />
+    <div >
+      <AppNavigation />
     </div>
   );
 }
