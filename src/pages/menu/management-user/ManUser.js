@@ -1,5 +1,6 @@
 import {Tab, Collapse, Nav, Row, Col} from "react-bootstrap";
 import {useState} from "react";
+import User from "../../form/User";
 
 const ManUser = () => {
     const [transactionColl, setTransactionColl] = useState(false);
@@ -98,13 +99,13 @@ const ManUser = () => {
                         </Nav.Item>
                     </Nav>
                 </Col>
-                <Col>
+                <Col xs={9}>
                     <Tab.Content>
                         <Tab.Pane eventKey="dashboard">
                             Page Dashboard
                         </Tab.Pane>
                         <Tab.Pane eventKey="user">
-                            Page Management User
+                            <User />
                         </Tab.Pane>
                         <Tab.Pane eventKey="transaction_buy">
                             Page Transaction Buy

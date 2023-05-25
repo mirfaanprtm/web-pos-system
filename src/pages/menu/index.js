@@ -8,7 +8,7 @@ const Menu = () => {
             <Col>
                 <Header />
             </Col>
-            <Col xs={4}>
+            <Col xs={8}>
                 <ManagementUser />
             </Col>
         </div>
