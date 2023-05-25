@@ -10,25 +10,28 @@ const TransactionBuy = () => {
             <Form>
                 <Row>
                     <Col>
-                        <Form.Label>No. Transaction</Form.Label>
-                        <Form.Control value="TRX/0001" disabled />
                         <Form.Label>Name Product</Form.Label>
                         <Form.Control placeholder="Search Name Product" />
+                        <Form.Label>Name Supplier</Form.Label>
+                        <Form.Control placeholder="Search Name Supplier" />
+                    </Col>
+                    <Col>
+                        <div>
+                            <Form.Label>Name :</Form.Label>{' '}
+                            <Form.Text>Nara</Form.Text> <br />
+                            <Form.Label>Address :</Form.Label>{' '}
+                            <Form.Text>Jl. Senang-senang aja no 1</Form.Text> <br/>
+                            <Form.Label>Phone :</Form.Label>{' '}
+                            <Form.Text>0829383939382</Form.Text>
+                        </div>
+                        <Button variant="primary" size="sm" style={{marginTop:8}}>add</Button>
+
 
                     </Col>
                     <Col>
                         <Form.Label>Date</Form.Label>
                         <Form.Control value={d} disabled />
-                        <Form.Label>Name Supplier</Form.Label>
-                        <Form.Control placeholder="Search Name Supplier" />
-                    </Col>
-                    <Col>
-                        <Form.Label>Name :</Form.Label>{' '}
-                        <Form.Text>Nara</Form.Text> <br />
-                        <Form.Label>Address :</Form.Label>{' '}
-                        <Form.Text>Jl. Senang-senang aja no 1</Form.Text> <br/>
-                        <Form.Label>Phone :</Form.Label>{' '}
-                        <Form.Text>0829383939382</Form.Text>
+
                     </Col>
                 </Row>
                 <Row>
@@ -40,7 +43,7 @@ const TransactionBuy = () => {
                             <th>Price (Rp)</th>
                             <th>Unit</th>
                             <th>Quantity</th>
-                            <th>Subtotal</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -50,7 +53,9 @@ const TransactionBuy = () => {
                             <td>84000</td>
                             <td>Box</td>
                             <td>8</td>
-                            <td>{84000*8}</td>
+                            <td>
+                                <Button variant="danger" size="sm">remove</Button>
+                            </td>
                         </tr>
                         <tr>
                             <td>2</td>
@@ -58,23 +63,12 @@ const TransactionBuy = () => {
                             <td>84000</td>
                             <td>Box</td>
                             <td>5</td>
-                            <td>{84000*5}</td>
+                            <td>
+                                <Button variant="danger" size="sm">remove</Button>
+                            </td>
                         </tr>
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colSpan={4} style={{textAlign:"center", fontWeight:"bold"}}>Total</td>
-                                <td style={{fontWeight:"bold"}}>{8+5}</td>
-                                <td style={{fontWeight:"bold"}}>{672000+420000}</td>
-                            </tr>
-                        </tfoot>
                     </Table>
-                </Row>
-                <Row>
-                    <div>
-                        <Button variant="danger" size="sm-2">Cancel</Button>{' '}
-                        <Button variant="primary" size="sm-2">Submit</Button>
-                    </div>
                 </Row>
             </Form>
         </Container>
