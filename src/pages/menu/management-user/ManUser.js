@@ -1,5 +1,7 @@
 import {Tab, Collapse, Nav, Row, Col} from "react-bootstrap";
 import {useState} from "react";
+import SupplierView from "../../../features/supplier";
+
 import User from "../../form/User";
 
 const ManUser = () => {
@@ -114,7 +116,7 @@ const ManUser = () => {
                             Page Transaction Sell
                         </Tab.Pane>
                         <Tab.Pane eventKey="supplier">
-                            Page Management Supplier
+                            <SupplierView />
                         </Tab.Pane>
                         <Tab.Pane eventKey="product_stock">
                             Page Product Stock
