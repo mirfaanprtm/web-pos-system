@@ -1,5 +1,7 @@
 import {Tab, Collapse, Nav, Row, Col} from "react-bootstrap";
 import {useState} from "react";
+import SupplierView from "../../../features/supplier";
+
 
 const ManUser = () => {
     const [transactionColl, setTransactionColl] = useState(false);
@@ -98,7 +100,7 @@ const ManUser = () => {
                         </Nav.Item>
                     </Nav>
                 </Col>
-                <Col>
+                <Col xs={9}>
                     <Tab.Content>
                         <Tab.Pane eventKey="dashboard">
                             Page Dashboard
@@ -113,7 +115,7 @@ const ManUser = () => {
                             Page Transaction Sell
                         </Tab.Pane>
                         <Tab.Pane eventKey="supplier">
-                            Page Management Supplier
+                            <SupplierView />
                         </Tab.Pane>
                         <Tab.Pane eventKey="product_stock">
                             Page Product Stock

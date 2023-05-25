@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.form-input-error {
+  color: tomato;
+  font-size: 1.2rem;
+}
+
+.app-color {
+  color: rgb(94, 94, 94);
+}
+
+
+
