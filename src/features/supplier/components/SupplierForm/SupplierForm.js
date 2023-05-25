@@ -21,7 +21,7 @@ class SupplierForm extends Component {
                 errorsupplierName: null,
                 erroraddress: null,
                 errorphone: null,
-            }, 
+            },
             isValidForm: false,
             isShowingForm: false,
             currentSuppliers : []
@@ -80,7 +80,7 @@ class SupplierForm extends Component {
         const key = e.target.name;
         let val = e.target.value;
         console.log(key, val)
-        
+
         this.setState({
             supplier: {
                 ...this.state.supplier, [key]: val
@@ -91,7 +91,7 @@ class SupplierForm extends Component {
     handleAddSupplier = async () => {
         this.props.onShowLoading(true);
         try {
-            const response = await this.service.addSupplier(this.state.supplier)
+            await this.service.addSupplier(this.state.supplier);
             this.clearForm();
             this.props.onShowLoading(false);
             await this.onGetSupplier();
@@ -99,12 +99,12 @@ class SupplierForm extends Component {
             this.props.onShowError(false);
         }
     }
-    
+
     handleDeleteSupplier = async (id) => {
         const response = window.confirm('Are you sure want to delete ?');
         if (response) {
             try {
-                const response = await this.service.deleteSupplier(id);
+                await this.service.deleteSupplier(id);
                 this.props.onShowLoading(false);
                 await this.onGetSupplier()
             } catch (e) {

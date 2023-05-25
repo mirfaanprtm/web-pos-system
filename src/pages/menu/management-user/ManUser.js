@@ -3,6 +3,8 @@ import {useState} from "react";
 import SupplierView from "../../../features/supplier";
 
 import User from "../../form/User";
+import TransactionBuy from "../../form/TransactionBuy";
+import TransactionSell from "../../form/TransactionSell";
 
 const ManUser = () => {
     const [transactionColl, setTransactionColl] = useState(false);
@@ -110,10 +112,10 @@ const ManUser = () => {
                             <User />
                         </Tab.Pane>
                         <Tab.Pane eventKey="transaction_buy">
-                            Page Transaction Buy
+                            <TransactionBuy />
                         </Tab.Pane>
                         <Tab.Pane eventKey="transaction_sell">
-                            Page Transaction Sell
+                            <TransactionSell />
                         </Tab.Pane>
                         <Tab.Pane eventKey="supplier">
                             <SupplierView />
