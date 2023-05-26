@@ -18,7 +18,7 @@ const Supplier = () => {
 
     return (
         <Container fluid>
-            <h3 style={{textAlign:"center"}}>Page Management Suapplier</h3>
+            <h3 style={{textAlign:"center"}}>Management Supplier</h3>
             <Row>
                 <Button
                     onClick={() => setOpenAdd(!openAdd)}
@@ -30,9 +30,9 @@ const Supplier = () => {
                         <Form.Label>Supplier Name</Form.Label>
                         <Form.Control type="text" placeholder="Enter Supplier Name" />
                         <Form.Label>Address</Form.Label>
-                        <Form.Control type="text" placeholder="enter Address" />
+                        <Form.Control type="text" placeholder="Enter Address" />
                         <Form.Label>Phone</Form.Label>
-                        <Form.Control type="text" placeholder="Phone Number" />
+                        <Form.Control type="text" placeholder="Enter Phone Number" />
                     
                         <Button variant="primary" type="submit" style={{margin:"10px 0"}}>
                             Submit
@@ -54,7 +54,7 @@ const Supplier = () => {
                     <tr>
                         
                         <td>Supp1</td>
-                        <td>jalan enigma</td>
+                        <td>Jalan Enigma</td>
                         <td>00000000000</td>
                         <td>
                             
@@ -73,7 +73,7 @@ const Supplier = () => {
                 <Modal.Body>
                     <Form>
                         <Form.Label>Supplier Name</Form.Label>
-                        <Form.Control type="text" placeholder="Full Name" />
+                        <Form.Control type="text" placeholder="Supplier Name" />
                         <Form.Label>Address</Form.Label>
                         <Form.Control type="text" placeholder="Address" />
                         <Form.Label>Phone</Form.Label>

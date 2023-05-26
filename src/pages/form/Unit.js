@@ -18,7 +18,7 @@ const Unit = () => {
 
     return (
         <Container fluid>
-            <h3 style={{textAlign:"center"}}>Page Management Product</h3>
+            <h3 style={{textAlign:"center"}}>Management Unit</h3>
             <Row>
                 <Button
                     onClick={() => setOpenAdd(!openAdd)}
