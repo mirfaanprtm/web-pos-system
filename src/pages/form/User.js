@@ -20,7 +20,7 @@ const User = () => {
 
     return (
         <Container fluid>
-            <h3 style={{textAlign:"center"}}>Page Management User</h3>
+            <h3 style={{textAlign:"center"}}>Management User</h3>
             <Row>
                 <Button
                     onClick={() => setOpenAdd(!openAdd)}
@@ -58,6 +58,7 @@ const User = () => {
                         <th>Username</th>
                         <th>Phone</th>
                         <th>Role</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -66,8 +67,8 @@ const User = () => {
                         <td>Surya Prima Siregar</td>
                         <td>sirprima</td>
                         <td>08232323232</td>
+                        <td>Manager</td>
                         <td>
-                            <span style={{marginRight:10}}>Manager</span>
                             <Button variant="warning" style={{marginRight: 5}} onClick={handleOpenEdit}>Edit</Button>
                             <Button variant="danger">Delete</Button>
                         </td>
