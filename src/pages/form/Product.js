@@ -18,7 +18,7 @@ const Product = () => {
 
     return (
         <Container fluid>
-            <h3 style={{textAlign:"center"}}>Page Management Product</h3>
+            <h3 style={{textAlign:"center"}}>Management Product</h3>
             <Row>
                 <Button
                     onClick={() => setOpenAdd(!openAdd)}
@@ -30,7 +30,7 @@ const Product = () => {
                         <Form.Label>Product Name</Form.Label>
                         <Form.Control type="text" placeholder="Enter Product Name" />
                         <Form.Label>Category</Form.Label>
-                        <Form.Control type="text" placeholder="enter Category" />
+                        <Form.Control type="text" placeholder="Enter Category" />
                     
                         <Button variant="primary" type="submit" style={{margin:"10px 0"}}>
                             Submit

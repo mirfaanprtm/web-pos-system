@@ -15,7 +15,7 @@ const Category = () => {
 
     return (
         <Container fluid>
-            <h3 style={{textAlign:"center"}}>Page Management Category</h3>
+            <h3 style={{textAlign:"center"}}>Management Category</h3>
             <Row>
                 <Button
                     onClick={() => setOpenAdd(!openAdd)}

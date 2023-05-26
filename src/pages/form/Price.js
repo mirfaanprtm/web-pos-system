@@ -6,7 +6,7 @@ const Price = () => {
 
     return (
         <Container fluid>
-            <h3 style={{textAlign:"center"}}>Page Management Price</h3>
+            <h3 style={{textAlign:"center"}}>Management Price</h3>
             <Row>
                 <Button
                     onClick={() => setOpenAdd(!openAdd)}
