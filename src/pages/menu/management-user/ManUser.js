@@ -5,11 +5,14 @@ import SupplierView from "../../../features/supplier";
 import User from "../../form/User";
 import TransactionBuy from "../../form/TransactionBuy";
 import TransactionSell from "../../form/TransactionSell";
+import Report from "../../form/Report";
 
 const ManUser = () => {
     const [transactionColl, setTransactionColl] = useState(false);
     const [productColl, setProductColl] = useState(false);
     const [reportColl, setReportColl] = useState(false);
+    const [name, setName] = useState("")
+
 
 
     return (
@@ -93,10 +96,10 @@ const ManUser = () => {
                             <Collapse in={reportColl}>
                                 <div id="collapse-report">
                                     <Nav.Item>
-                                        <Nav.Link eventKey="report_buy">Report Buy</Nav.Link>
+                                        <Nav.Link eventKey="report_buy" onClick={() => setName("Buy")}>Report Buy</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link eventKey="report_sell">Report Sell</Nav.Link>
+                                        <Nav.Link eventKey="report_sell" onClick={() => setName("Sell")}>Report Sell</Nav.Link>
                                     </Nav.Item>
                                 </div>
                             </Collapse>
@@ -133,10 +136,10 @@ const ManUser = () => {
                             Page Product Unit
                         </Tab.Pane>
                         <Tab.Pane eventKey="report_buy">
-                            Page Report Buy
+                            <Report name={name} />
                         </Tab.Pane>
                         <Tab.Pane eventKey="report_sell">
-                            Page Report Sell
+                            <Report name={name} />
                         </Tab.Pane>
                     </Tab.Content>
                 </Col>
