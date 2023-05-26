@@ -1,17 +1,20 @@
 import {Component} from "react";
+import { Button, Table, Form} from "react-bootstrap";
 import './SupplierList.css';
 import {withUiState} from "../../../../shared/hoc/WithUiState";
 import { withDep } from "../../../../shared/hoc/WithDep";
 class SupplierList extends Component {
+
+    
     render() {
         return (
             <div className='menu-list-table'>
                 <h2>Supplier List</h2>
-                <button onClick={() => {
+                <Button onClick={() => {
                     this.props.onShowingForm(true)
                 }}>Add supplier
-                </button>
-                <table width='100%'>
+                </Button>
+                <Table width='100%' striped bordered hover>
                     <thead>
                     <tr className='menu-list-table-header'>
                         <th className='menu-list-table-header-title'>Supplier</th>
@@ -21,6 +24,7 @@ class SupplierList extends Component {
                         <th></th>
                     </tr>
                     </thead>
+
                     <tbody>
                     {this.props.data.map((supplier) => (
                         <tr key={supplier.id}>
@@ -29,13 +33,15 @@ class SupplierList extends Component {
                             <td>{supplier.phone}</td>
 
                             <td>
-                                <button onClick={() => this.props.onDeleteSupplier(supplier.id)}>Delete</button>
+                                <Button variant="warning" style={{marginRight: 5}}>Edit</Button>
+                                <Button variant="danger" onClick={() => this.props.onDeleteSupplier(supplier.id)}>Delete</Button>
+                                
                             </td>
                         </tr>
                     ))
                     }
                     </tbody>
-                </table>
+                </Table>
             </div>
         )
 

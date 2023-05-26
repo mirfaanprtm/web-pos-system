@@ -1,6 +1,7 @@
 import { Component } from "react";
 import '../../../../App.css';
 import './SupplierForm.css';
+import { Button, Form, Modal } from "react-bootstrap";
 import SupplierList from "../SupplierList/SupplierList";
 import { withUiState } from "../../../../shared/hoc/WithUiState";
 import SupplierService from "../../../../services/SupplierService";
@@ -49,7 +50,7 @@ class SupplierForm extends Component {
         this.onGetSupplier();
     }
     componentDidUpdate(prevProps, prevState, snapshot){
-        console.log('supplier form update')
+        console.log('unit form update')
     }
     handleValidation = (key, value) => {
         let isValid;
@@ -98,8 +99,8 @@ class SupplierForm extends Component {
         } catch (e) {
             this.props.onShowError(false);
         }
-    }
-
+    } 
+    
     handleDeleteSupplier = async (id) => {
         const response = window.confirm('Are you sure want to delete ?');
         if (response) {
@@ -133,42 +134,51 @@ class SupplierForm extends Component {
     render() {
         const {supplier: {id, supplierName, address, phone}, error: {errorid, errorsupplierName, errorphone, erroraddress}, isValidForm} = this.state
         return (
-            <>
-                <SupplierList data={this.state.currentSuppliers} onDeleteSupplier={this.handleDeleteSupplier}
-                        onShowingForm={this.handleShowForm}/>
-                {this.state.isShowingForm &&
-                    <div className='menu-form-container'>
-                        <div className='menu-form-input-container'>
-                            <div className='menu-form-header'>
-                                <h2>Supplier Form</h2>
-                                <button onClick={() => this.handleShowForm(false)}>X</button>
-                            </div>
-                            <label>Id</label>
-                            <input className='menu-form-input' name='id' type='text' value={id}
-                                onChange={this.handleInputChange}/>
-                            {errorid && <div className='form-input-error'><small>{errorid}</small></div>}
-                            <br/>
-                            <label>Supplier Name</label>
-                            <input className='menu-form-input' name='supplierName' type='text' value={supplierName}
-                                onChange={this.handleInputChange}/>
-                            {errorsupplierName &&
-                                <div className='form-input-error'><small>{errorsupplierName}</small></div>}
-                            <br/>
-                            <label>phone</label>
-                            <input className='menu-form-input' name='phone' type='text' value={phone}
-                                onChange={this.handleInputChange}/>
-                            {errorphone && <div className='form-input-error'><small>{errorphone}</small></div>}
-                            <br/>
-                            <label>address</label>
-                            <input className='menu-form-input' name='address' type='text' value={address}
-                                onChange={this.handleInputChange}/>
-                            {errorphone && <div className='form-input-error'><small>{erroraddress}</small></div>}
-                            <br/>
-                            <button disabled={!isValidForm} onClick={this.handleAddSupplier}>Add</button>
-                        </div>
-                    </div>
-                }
-        </>
+         
+
+
+<>
+  <SupplierList data={this.state.currentSuppliers} onDeleteSupplier={this.handleDeleteSupplier}
+    onShowingForm={this.handleShowForm} />
+  {this.state.isShowingForm &&
+    <div className='menu-form-container'>
+      <div className='menu-form-input-container'>
+        <div className='menu-form-header'>
+          <h2>Supplier Form</h2>
+          <Button variant="secondary" onClick={() => this.handleShowForm(false)}>X</Button>
+        </div>
+        <Form>
+          <Form.Group controlId="formId">
+            <Form.Label>Id</Form.Label>
+            <Form.Control name='id' type='text' value={id} onChange={this.handleInputChange} />
+            {errorid && <Form.Text className='form-input-error'><small>{errorid}</small></Form.Text>}
+          </Form.Group>
+
+          <Form.Group controlId="formSupplierName">
+            <Form.Label>Supplier Name</Form.Label>
+            <Form.Control name='supplierName' type='text' value={supplierName} onChange={this.handleInputChange} />
+            {errorsupplierName && <Form.Text className='form-input-error'><small>{errorsupplierName}</small></Form.Text>}
+          </Form.Group>
+
+          <Form.Group controlId="formPhone">
+            <Form.Label>Phone</Form.Label>
+            <Form.Control name='phone' type='text' value={phone} onChange={this.handleInputChange} />
+            {errorphone && <Form.Text className='form-input-error'><small>{errorphone}</small></Form.Text>}
+          </Form.Group>
+
+          <Form.Group controlId="formAddress">
+            <Form.Label>Address</Form.Label>
+            <Form.Control name='address' type='text' value={address} onChange={this.handleInputChange} />
+            {errorphone && <Form.Text className='form-input-error'><small>{erroraddress}</small></Form.Text>}
+          </Form.Group>
+
+          <Button variant="primary" disabled={!isValidForm} onClick={this.handleAddSupplier}>Add</Button>
+        </Form>
+      </div>
+    </div>
+  }
+</>
+
 
         )
     }

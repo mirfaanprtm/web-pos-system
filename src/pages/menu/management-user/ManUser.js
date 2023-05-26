@@ -1,11 +1,16 @@
 import {Tab, Collapse, Nav, Row, Col} from "react-bootstrap";
 import {useState} from "react";
-import SupplierView from "../../../features/supplier";
 
 import User from "../../form/User";
+import Supplier from "../../form/Supplier";
+import Product from "../../form/Product";
+import Price from "../../form/Price";
+import Category from "../../form/Category";
+import Unit from "../../form/Unit";
 import TransactionBuy from "../../form/TransactionBuy";
 import TransactionSell from "../../form/TransactionSell";
 import Report from "../../form/Report";
+
 
 const ManUser = () => {
     const [transactionColl, setTransactionColl] = useState(false);
@@ -69,7 +74,7 @@ const ManUser = () => {
                             <Collapse in={productColl}>
                                 <div id="collapse-product">
                                     <Nav.Item>
-                                        <Nav.Link eventKey="product_stock">Stock</Nav.Link>
+                                        <Nav.Link eventKey="product_sub">Product</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
                                         <Nav.Link eventKey="product_price">Price</Nav.Link>
@@ -121,19 +126,19 @@ const ManUser = () => {
                             <TransactionSell />
                         </Tab.Pane>
                         <Tab.Pane eventKey="supplier">
-                            <SupplierView />
+                            <Supplier />
                         </Tab.Pane>
-                        <Tab.Pane eventKey="product_stock">
-                            Page Product Stock
+                        <Tab.Pane eventKey="product_sub">
+                            <Product/>
                         </Tab.Pane>
                         <Tab.Pane eventKey="product_price">
-                            Page Product Price
+                            <Price/>
                         </Tab.Pane>
                         <Tab.Pane eventKey="product_category">
-                            Page Product Category
+                            <Category/>
                         </Tab.Pane>
                         <Tab.Pane eventKey="product_unit">
-                            Page Product Unit
+                            <Unit/>
                         </Tab.Pane>
                         <Tab.Pane eventKey="report_buy">
                             <Report name={name} />
