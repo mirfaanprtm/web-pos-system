@@ -2,6 +2,9 @@ import {Container, Navbar, NavDropdown} from "react-bootstrap";
 import logo from "../../assets/logo/logo.json"
 import profile from "../../assets/profile/profile.json"
 import Lottie from "lottie-react";
+import {useState} from "react";
+import {Navigate} from "react-router-dom";
+import {removeToken} from "../../utils/token";
 const Header = () => {
     const styles = {
         sizing: {
@@ -12,6 +15,19 @@ const Header = () => {
             color: "white"
         }
     };
+
+    const [navigate, setNavigate] = useState(false);
+
+    const logout = async () => {
+        removeToken();
+
+        setNavigate(true)
+    }
+
+    if (navigate) {
+        return <Navigate to={"/"} />
+    }
+
     return (
         <header>
             <Navbar bg="dark" variant="dark">
@@ -30,7 +46,7 @@ const Header = () => {
                                 loop={false}
                                 style={styles.sizing}/>
                         <NavDropdown title="Profile" menuVariant={"dark"} style={styles.colour}>
-                            <NavDropdown.Item href="#">Log out</NavDropdown.Item>
+                            <NavDropdown.Item onClick={logout}>Log out</NavDropdown.Item>
                         </NavDropdown>
                     </Navbar.Collapse>
                 </Container>
