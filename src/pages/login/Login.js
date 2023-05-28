@@ -20,21 +20,21 @@ const Login = () => {
     const login = async e => {
         e.preventDefault();
 
-        const response = await api.post('auth/login', {
+        await api.post('auth/login', {
             username, password
         }, {withCredentials: true})
             .then((res) => {
                 if (res.data['data']) {
                     setToken(res.data['data'])
+                    console.log("token: ",res.data['data'])
                     setNavigate(true);
                 } else {
                     alert("login failed")
                 }
             })
             .catch((error) => {
-                setError("login failed a")
+                setError(error)
             })
-        console.log(response)
     }
 
     if (navigate) {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {getToken, removeToken} from "../utils/token";
+import {getToken} from "../utils/token";
 
 const api = axios.create({
     baseURL: 'http://localhost:8080/api/'
@@ -8,9 +8,7 @@ const api = axios.create({
 api.interceptors.request.use(
     (config) => {
         const token = getToken();
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
-        }
+        config.headers['Authorization'] = `Bearer ${token}`;
 
         return config;
     },
@@ -26,8 +24,7 @@ api.interceptors.response.use(
     (error) => {
         const data = error?.response?.data;
         if (data.code === 'X06') {
-            removeToken();
-            // window.location.reload();
+            console.log(data.message)
         }
         return Promise.reject(error)
     }
