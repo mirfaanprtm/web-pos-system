@@ -2,20 +2,20 @@ import axios from "axios";
 import {getToken} from "../utils/token";
 
 const api = axios.create({
-    baseURL: 'http://localhost:8080/api/'
-})
+  baseURL: "http://10.10.100.46:8080/api",
+});
 
 api.interceptors.request.use(
     (config) => {
-        const token = getToken();
-        config.headers['Authorization'] = `Bearer ${token}`;
+      const token = getToken();
+      config.headers['Authorization'] = `Bearer ${token}`;
 
-        return config;
-    },
-    (error) => {
-        return Promise.reject(error)
-    }
-)
+      return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 api.interceptors.response.use(
     (response) => {
@@ -28,6 +28,6 @@ api.interceptors.response.use(
         }
         return Promise.reject(error)
     }
-)
+);
 
-export default api
+export default api;
