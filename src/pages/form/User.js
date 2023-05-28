@@ -1,22 +1,90 @@
-import {Button, Collapse, Container, Form, Row, Table, Modal, ToggleButton} from "react-bootstrap";
-import {useState} from "react";
+import {Button, Collapse, Container, Form, Row, Table, Modal} from "react-bootstrap";
+import {useEffect, useState} from "react";
+import api from "../../interceptors/axios";
 
 const User = () => {
-    const [openAdd, setOpenAdd] = useState(false)
-    const [openEdit, setOpenEdit] = useState(false)
+    const [openAdd, setOpenAdd] = useState(false);
+    const [openEdit, setOpenEdit] = useState(false);
     const [checked, setChecked] = useState(false);
+
+    const [username, setUsername] = useState('');
+    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
+    const [phone, setPhone] = useState('');
+    const [data, setData] = useState([])
+    const [editUserId, setEditUserId] = useState(null)
+
+    const handleOpenEdit = (id) => {
+        setEditUserId(id)
+        setOpenEdit(true)
+        setOpenAdd(false)
+    }
 
     const handleCloseEdit = () => {
         setOpenEdit(false)
         setChecked(false)
     }
-    const handleOpenEdit = () => {
-        setOpenEdit(true)
-        setOpenAdd(false)
+
+    const clearForm = () => {
+        setName("")
+        setUsername("")
+        setPassword("")
+        setPhone("")
+        setChecked(false)
     }
 
+    const addUser = async event => {
+        event.preventDefault()
 
+        await api.post('user', {username, name, password, phone, checked})
+            .then((response) => {
+            setData([...data, response.data.data]);
+            }).catch((error) => {
+                console.log(error)
+            })
+        await clearForm()
+    }
 
+    const getAllUser = async () => {
+         await api.get('user')
+             .then((response) => {
+                 setData([...response.data.data])
+             }).catch((error) => {
+                 console.log(error)
+             })
+    }
+
+    const deleteUser = async (id) => {
+        await api.delete(`user/${id}`)
+            .then((response) => {
+                setData(data.filter((d) => d.id !== id));
+            }).catch((error) => {
+                console.log(error);
+            })
+    }
+
+    const updateUser = async () => {
+        const dataUser = {
+            name,
+            username,
+            password,
+            phone,
+            isActive: checked,
+        }
+        await api.put(`user/${editUserId}`, dataUser )
+            .then((response) => {
+                console.log(response.data.data)
+                setData([...data,response.data.data]);
+                getAllUser()
+                handleCloseEdit();
+            }).catch((error) => {
+                console.log(error)
+            })
+    }
+
+    useEffect(() => {
+        getAllUser();
+    },[])
 
     return (
         <Container fluid>
@@ -28,21 +96,21 @@ const User = () => {
                     ADD
                 </Button>
                 <Collapse in={openAdd}>
-                    <Form>
+                    <Form onSubmit={addUser}>
                         <Form.Label>Name</Form.Label>
-                        <Form.Control type="text" placeholder="Full Name" />
+                        <Form.Control type="text" placeholder="Full Name" value={name} onChange={event => setName(event.target.value)} />
                         <Form.Label>Username</Form.Label>
-                        <Form.Control type="text" placeholder="User Name" />
+                        <Form.Control type="text" placeholder="User Name" value={username} onChange={event => setUsername(event.target.value)} />
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control type="password" placeholder="Password" value={password} onChange={event => setPassword(event.target.value)} />
                         <Form.Label>Phone</Form.Label>
-                        <Form.Control type="text" placeholder="Phone Number" />
-                        <Form.Label>Role</Form.Label>
-                        <Form.Select>
-                            <option>Select role</option>
-                            <option value="1">Manager</option>
-                            <option value="2">Cashier</option>
-                        </Form.Select>
+                        <Form.Control type="text" placeholder="Phone Number" value={phone} onChange={event => setPhone(event.target.value)} />
+                        <Form.Check
+                            type="switch"
+                            label="isActive? "
+                            checked={checked}
+                            onChange={(e) => setChecked(e.currentTarget.checked)}
+                        />
                         <Button variant="primary" type="submit" style={{margin:"10px 0"}}>
                             Submit
                         </Button>
@@ -62,17 +130,21 @@ const User = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Surya Prima Siregar</td>
-                        <td>sirprima</td>
-                        <td>08232323232</td>
-                        <td>Manager</td>
-                        <td>
-                            <Button variant="warning" style={{marginRight: 5}} onClick={handleOpenEdit}>Edit</Button>
-                            <Button variant="danger">Delete</Button>
-                        </td>
-                    </tr>
+
+                    {data?.map((user, index) => (
+                        <tr key={index}>
+                            <td>{index+1}</td>
+                            <td>{user?.name}</td>
+                            <td>{user?.auth?.username}</td>
+                            <td>{user?.phone}</td>
+                            <td>{user?.auth?.roleUser}</td>
+                            <td>
+                                <Button variant="warning" style={{marginRight: 5}} onClick={() => handleOpenEdit(user.id)}>Edit</Button>
+                                <Button variant="danger" onClick={() => deleteUser(user.id)}>Delete</Button>
+                            </td>
+                        </tr>
+                    ))}
+
                     </tbody>
                 </Table>
             </Row>
@@ -84,32 +156,39 @@ const User = () => {
                 <Modal.Body>
                     <Form>
                         <Form.Label>Name</Form.Label>
-                        <Form.Control type="text" placeholder="Full Name" />
+                        <Form.Control type="text" placeholder="Full Name" onChange={(event) => setName(event.target.value)} />
                         <Form.Label>Phone</Form.Label>
-                        <Form.Control type="text" placeholder="Phone Number" />
-                        <Form.Label>Is Active: </Form.Label>
-                        <ToggleButton
-                            className="ms-0"
-                            id="toggle-check"
-                            type="checkbox"
-                            variant="outline-success"
-                            checked={checked}
-                            value="true"
+                        <Form.Control type="text" placeholder="Phone Number" onChange={event => setPhone(event.target.value)} />
+                        <Form.Check
+                            type="switch"
+                            label="isActive? "
                             onChange={(e) => setChecked(e.currentTarget.checked)}
-                        >
-                            Active
-                        </ToggleButton>
+                        />
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseEdit}>
+                    <Button variant="secondary" onClick={() => handleCloseEdit()}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleCloseEdit}>
+                    <Button variant="primary" onClick={updateUser}>
                         Save Changes
                     </Button>
                 </Modal.Footer>
             </Modal>
+
+            {/*<Form.Control type="text" placeholder="Search" onKeyUp={searchID}/>*/}
+            {/*{console.log(user)}*/}
+            {/*<ul>*/}
+            {/*    {user?.map((d, index) => (*/}
+            {/*        <li key={index}>{d.data.id +" --> "+d.data.name}</li>*/}
+            {/*    ))}*/}
+            {/*</ul>*/}
+
+            {/*<Form.Select>*/}
+            {/*    {data.map((d, index) => (*/}
+            {/*        <option value={d?.id}>{d?.name}</option>*/}
+            {/*    ))}*/}
+            {/*</Form.Select>*/}
         </Container>
     )
 }

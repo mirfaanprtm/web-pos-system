@@ -1,16 +1,16 @@
 import axios from "axios";
-import { getToken, removeToken } from "../utils/token";
+import {getToken} from "../utils/token";
 
 const api = axios.create({
   baseURL: "http://10.10.100.46:8080/api",
 });
 
 api.interceptors.request.use(
-  (config) => {
-    const token = getToken()
-    config.headers['Authorization'] = `Bearer ${token}`;
+    (config) => {
+      const token = getToken();
+      config.headers['Authorization'] = `Bearer ${token}`;
 
-    return config;
+      return config;
   },
   (error) => {
     return Promise.reject(error);
@@ -18,16 +18,16 @@ api.interceptors.request.use(
 );
 
 api.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  (error) => {
-    const data = error?.response?.data;
-    if (data.code === "X06") {
-      console.log(data.message);
+    (response) => {
+        return response;
+    },
+    (error) => {
+        const data = error?.response?.data;
+        if (data.code === 'X06') {
+            console.log(data.message)
+        }
+        return Promise.reject(error)
     }
-    return Promise.reject(error);
-  }
 );
 
 export default api;
