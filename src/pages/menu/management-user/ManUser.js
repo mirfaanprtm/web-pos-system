@@ -114,7 +114,7 @@ const ManUser = () => {
                 <Col xs={9}>
                     <Tab.Content>
                         <Tab.Pane eventKey="dashboard">
-                            Page Dashboard
+                            Welcome to POS System, Enjoy Shopping.
                         </Tab.Pane>
                         <Tab.Pane eventKey="user">
                             <User />
